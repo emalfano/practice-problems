@@ -15,22 +15,23 @@
 
 $(document).ready(function(){
     $('.display').click(function(){
-        getUserInput();
-        $('.answer').append(random_range(num1,num2));
+        // getUserInput();
+        $('.answer1').append(random_range(1,100));
+        $('.answer2').append(random_range(['a','b','c','d','e']));
     })
 })
 //end of dom load
 function random_range(start_num,end_num){
-
-    var displayDiv;
-    var result = Math.floor((Math.random() * end_num) + start_num);
-
-    console.log(result);
-
-    displayDiv = $('<div>').text("random number between " + start_num + " and " + end_num + " is " + result);
-    return displayDiv;
-}
-function getUserInput(){
-    num1 = prompt("enter start of range");
-    num2 = prompt("enter end of range");
+    if (!end_num){
+        var arrayIndex = Math.floor((Math.random() * start_num.length));
+        console.log('random '+ arrayIndex);
+        displayDiv = $('<div>').text("random number in the array is " + start_num[arrayIndex]);
+        return displayDiv;
+    } else {
+        var displayDiv;
+        var result = Math.floor((Math.random() * end_num) + start_num);
+        console.log(result);
+        displayDiv = $('<div>').text("random number between " + start_num + " and " + end_num + " is " + result);
+        return displayDiv;
+    }
 }
